@@ -48,17 +48,17 @@ function userSelectsItem(){
       {
       name: 'choices',
       type: 'checkbox',
-      message: 'Which products would you like to add to your cart? Press the space key to choose each Product and press enter when you are finished.',
+      message: 'Which products would you like to add to your cart?',
       choices: items
       }
     ]).then(function(user){
       if (user.choices.length === 0) {
-        console.log('Oops you didn\'t select anything!');
+        console.log('You didn\'t select anything.');
         inquirer.prompt([
           {
           name: 'choice',
           type: 'list',
-          message: 'Your cart is empty. Would you like to continue shopping or quit?',
+          message: 'Your cart is empty, would you like to continue shopping or quit?',
           choices: ['Continue Shopping', 'Quit']
           }
         ]).then(function(user){
@@ -98,7 +98,7 @@ function howManyItems(itemNames){
         if (parseInt(str) <= itemStock) {
           return true
         } else {
-          console.log('\nOops! We only have ' + itemStock + ' of those in stock.');
+          console.log('\nWe only have ' + itemStock + ' of those in stock.');
           return false;
         }
       }
@@ -125,7 +125,7 @@ function checkout(){
   if (shoppingCart.length != 0) {
     var grandTotal = 0;
     console.log('---------------------------------------------');
-    console.log('Here is your cart. Are you ready to checkout?');
+    console.log('This is your cart, are you ready to checkout?');
     for (var i = 0; i < shoppingCart.length; i++) {
       var item = shoppingCart[i].item;
       var amount = shoppingCart[i].amount;
@@ -155,7 +155,7 @@ function checkout(){
       {
       name: 'choice',
       type: 'list',
-      message: 'Your cart is empty. Would you like to continue shopping or quit?',
+      message: 'Your cart is empty, would you like to continue shopping or quit?',
       choices: ['Continue Shopping', 'Quit']
       }
     ]).then(function(user){
@@ -247,7 +247,7 @@ function editItem(itemsToEdit){
       {
       name: 'choice',
       type: 'list',
-      message: 'Would you like to remove ' + item + ' from your cart entirely or change the quantity?',
+      message: 'Would you like to remove ' + item + ' from your cart or change the quantity?',
       choices: ['Remove From My Cart', 'Change Quanity']
       }
     ]).then(function(user){
@@ -271,7 +271,7 @@ function editItem(itemsToEdit){
               if (shoppingCart[i].item === item) {
                 shoppingCart[i].amount = user.amount;
                 shoppingCart[i].total = shoppingCart[i].itemCost * user.amount;
-                console.log('Updated!');
+                console.log('Updated');
               }
             }
             editItem(itemsToEdit);
